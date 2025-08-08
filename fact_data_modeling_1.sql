@@ -96,4 +96,13 @@ CASE WHEN gd.team_id = g.home_team_id THEN home_team_wins = 1
   dim_team_win
 from games g JOIN bootcamp.nba_game_details gd ON g.game_id = gd.game_id
 
+--Analytical queries
+SELECT * FROM sundarmasetty.fct_nba_game_details WHERE dim_player_name = 'LeBron James'
+SELECT dim_team_did_win , AVG(m_points) as avg_points FROM sundarmasetty.fct_nba_game_details WHERE dim_player_name = 'LeBron James' GROUP BY dim_team_did_win
+
+SELECT YEAR(dim_game_date) as game_year, dim_team_did_win, AVG(m_points) as avg_points FROM sundarmasetty.fct_nba_game_details
+WHERE dim_player_name = 'LeBron James'
+GROUP BY YEAR(dim_game_date),dim_team_did_win
+ORDER BY 1,2
+
 
