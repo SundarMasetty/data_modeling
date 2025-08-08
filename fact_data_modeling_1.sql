@@ -40,4 +40,16 @@ Format = 'PARQUET',
 Partitioning = Array['dim_season']
 )
 
+WITH games AS (
+  SELECT game_id , season , home_team_wins , home_team_id , visitor_team_id FROM bootcamp.nba_games;
+)
+select * from games;
+
+--Joining two tables with the needed columns to check. for the next step.
+WITH games AS(
+Select game_id , season , home_team_wins, home_team_id , visitor_team_id from bootcamp.nba_games
+)
+Select * from games g JOIN bootcamp.nba_game_details gd ON g.game_id = gd.game_id
+LIMIT 50;
+
 
